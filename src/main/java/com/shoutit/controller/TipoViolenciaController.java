@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import com.shoutit.tipoviolencia.model.tiposviolencia;
 import com.shoutit.tipoviolencia.services.tipoviolenciaService;
 
@@ -42,8 +42,9 @@ public class TipoViolenciaController {
     public tiposviolencia updatetiposviolencia(@RequestBody tiposviolencia tiposviolencia ){
     return  this.tipoviolenciaService.modifytiposviolencia (tiposviolencia);
 }
-    @PostMapping(value="/id")
-    public Boolean deletetiposviolencia(@PathVariable(value="id")Long id){
-    return this.tipoviolenciaService.deletetiposviolencia (id);
-    } 
+    @DeleteMapping("/eliminar/{id}")
+    public Boolean deletetiposviolencia(@PathVariable("id") Long id) {
+    return tipoviolenciaService.deletetiposviolencia(id);
+}
+    
 }

@@ -38,18 +38,18 @@ public class tipoviolenciaServiceImpl implements tipoviolenciaService {
     }
 
     @Override
-    public tiposviolencia modifytiposviolencia(tiposviolencia tiposviolencia) {
+        public tiposviolencia modifytiposviolencia(tiposviolencia tiposviolencia) {
+        Optional<tiposviolencia> tipoviolenciaEncontrado = tipoviolenciaRepository.findById(tiposviolencia.getId_Tipo_Violencia());
 
-
-        Optional<tiposviolencia> tipoviolenciaEncontrado= this.tipoviolenciaRepository.findById(tiposviolencia.getId_Tipo_Violencia());
-        if(tipoviolenciaEncontrado.get()!=null) {
-        tipoviolenciaEncontrado.get().setNombre_Tipo_Violencia(tiposviolencia.getNombre_Tipo_Violencia());
-        tipoviolenciaEncontrado.get().setDescripcion(tiposviolencia.getDescripcion());
-        return this.newtiposviolencia(tipoviolenciaEncontrado.get());
-
-        }
-        return null;
+    if (tipoviolenciaEncontrado.isPresent()) {
+        tiposviolencia tipoExistente = tipoviolenciaEncontrado.get();
+        tipoExistente.setNombre_Tipo_Violencia(tiposviolencia.getNombre_Tipo_Violencia());
+        tipoExistente.setDescripcion(tiposviolencia.getDescripcion());
+        return tipoviolenciaRepository.save(tipoExistente);
     }
+
+    return null;
+}
 
     @Override
     public Boolean deletetiposviolencia(long Id_Tipo_Violencia) {

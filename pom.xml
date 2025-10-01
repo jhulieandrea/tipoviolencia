@@ -15,7 +15,7 @@
     <artifactId>tipoviolencia</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>tipoviolencia</name>
+    <name>shoutit</name>
     <description>Codificación página web módulo tipo violencia</description>
 
     <properties>
